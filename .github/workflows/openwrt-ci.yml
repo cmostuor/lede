@@ -171,6 +171,7 @@ jobs:
           # 
           sed -i 's/^[ \t]*//g' ./.config
           make defconfig
+          cat ./.config
       - name: Make download
         run: |
           make download -j8
@@ -178,6 +179,7 @@ jobs:
           df -h
       - name: Compile firmware
         run: |
+          make clean
           make -j$(nproc) V=s || make -j1 V=s
           echo "======================="
           echo "Space usage:"
